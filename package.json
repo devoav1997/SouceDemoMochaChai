@@ -1,0 +1,22 @@
+{
+  "name": "saucedemo-test",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.2",
+    "mocha": "^11.6.0"
+  },
+  "dependencies": {
+    "chromedriver": "^137.0.3",
+    "selenium-webdriver": "^4.33.0"
+  }
+}
