@@ -1,5 +1,5 @@
-import { createDriver } from '../support/webdriver.js';
-import LoginPage from '../pages/login.page.js';
+import { createDriver } from '../support/webdriver.js'
+import LoginPage from '../pages/login.page.js'
 import { expect } from 'chai';
 import fs from 'fs';
 

@@ -2,7 +2,7 @@
   "name": "saucedemo-test",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "## 🚀 Mocha + Chai + Selenium WebDriver Automation for SauceDemo",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -16,7 +16,11 @@
     "mocha": "^11.6.0"
   },
   "dependencies": {
-    "chromedriver": "^137.0.3",
+    "@cucumber/cucumber": "^11.3.0",
+    "chromedriver": "^137.0.4",
     "selenium-webdriver": "^4.33.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
