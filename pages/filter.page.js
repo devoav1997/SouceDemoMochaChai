@@ -9,13 +9,6 @@ export default class FilterPage extends LoginPage {
     this.itemPrices = By.className('inventory_item_price');
   }
 
-  async login(username, password) {
-    await this.open();
-    await this.enterCredentials(username, password);
-    await this.clickLogin();
-    await this.driver.wait(until.elementLocated(this.sortDropdown), 5000);
-  }
-
   async selectSort(option) {
     const sortMap = {
       'A to Z': 'az',

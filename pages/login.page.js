@@ -15,6 +15,13 @@ export default class LoginPage {
     await this.driver.get(this.url);
   }
 
+   async login(username, password) {
+    await this.open();
+    await this.enterCredentials(username, password);
+    await this.clickLogin();
+    await this.driver.wait(until.elementLocated(this.inventoryContainer), 5000);
+  }
+
   async enterCredentials(username, password) {
     const usernameField = await this.driver.findElement(this.usernameField);
     const passwordField = await this.driver.findElement(this.passwordField);

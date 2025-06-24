@@ -10,6 +10,7 @@ Fokus pengujian:
 - ❌ Login dengan username/password tidak valid
 - ❌ Login tanpa mengisi username atau password
 - ✅ **Product Filtering** (A-Z, Z-A, Low to High, High to Low)
+- ✅ **Add to Cart** (tambah produk ke keranjang, cek badge/cart, hapus produk dari cart)
 
 ---
 
@@ -20,17 +21,20 @@ Fokus pengujian:
 saucedemo-test/
 ├── pages/
 │   ├── login.page.js           # Page Object untuk halaman login
-│   └── filter.page.js          # Page Object untuk halaman inventory/filter
+│   ├── filter.page.js          # Page Object untuk halaman inventory/filter
+│   └── cart.page.js            # Page Object untuk fitur cart/keranjang
 ├── support/
 │   └── webdriver.js            # Konfigurasi Selenium WebDriver
 ├── steps/
 │   ├── login.steps.js          # Step/test untuk valid login
 │   ├── login-negative.steps.js # Step/test untuk skenario gagal login
-│   └── filter.steps.js         # Step/test untuk fitur filter produk
+│   ├── filter.steps.js         # Step/test untuk fitur filter produk
+│   └── cart.steps.js           # Step/test untuk fitur add to cart
 ├── test/
 │   ├── login.test.js           # Loader untuk login positive
 │   ├── login-negative.test.js  # Loader untuk login negative
-│   └── filter.test.js          # Loader untuk fitur filter produk
+│   ├── filter.test.js          # Loader untuk fitur filter produk
+│   └── cart.test.js            # Loader untuk fitur cart
 ├── screenshot.png              # Screenshot hasil test (opsional)
 ├── package.json                # Info proyek & dependency
 └── README.md                   # Dokumentasi proyek
@@ -66,6 +70,7 @@ npm test
 npx mocha test/login.test.js
 npx mocha test/login-negative.test.js
 npx mocha test/filter.test.js
+npx mocha test/cart.test.js
 ```
 
 ---
@@ -89,6 +94,14 @@ npx mocha test/filter.test.js
 * ✅ Filter produk berdasarkan nama (Z-A)
 * ✅ Filter produk berdasarkan harga (Low to High)
 * ✅ Filter produk berdasarkan harga (High to Low)
+
+### Cart / Add to Cart
+
+* ✅ Menambah produk ke keranjang (Add to cart)
+* ✅ Verifikasi cart badge muncul setelah produk ditambah
+* ✅ Melihat isi cart & verifikasi produk sudah masuk
+* ✅ Tidak menambah produk → badge tetap 0/tidak muncul, cart kosong
+* ✅ Hapus produk dari cart → cart kembali kosong & badge menghilang/0
 
 ---
 
@@ -114,3 +127,4 @@ Setelah test selesai, otomatis menyimpan screenshot (`screenshot.png`) dan delay
 * **chromedriver** – Pengendali Chrome
 
 ```
+
