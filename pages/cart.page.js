@@ -8,7 +8,6 @@ export default class CartPage extends LoginPage {
     this.cartBadge = By.className('shopping_cart_badge');
     this.cartIcon = By.className('shopping_cart_link');
     this.cartItems = By.className('cart_item');
-    this.removeBtn = By.css('.cart_button'); // tombol Remove di halaman cart
   }
 
   async addFirstProductToCart() {
@@ -41,17 +40,22 @@ export default class CartPage extends LoginPage {
     return names;
   }
 
-  async removeFirstProductFromCart() {
-    // Tunggu tombol Remove ada
-    await this.driver.wait(until.elementLocated(this.removeBtn), 5000);
-    const btn = await this.driver.findElement(this.removeBtn);
-    await btn.click();
-    // Tunggu hingga cart kosong
-    await this.driver.wait(async () => {
-      const items = await this.driver.findElements(this.cartItems);
-      return items.length === 0;
-    }, 5000);
-    // Tambahan delay kecil agar badge hilang
-    await new Promise(resolve => setTimeout(resolve, 500));
-  }
+async removeFirstProductFromCart() {
+  // Tunggu item cart muncul
+  await this.driver.wait(until.elementLocated(this.cartItems), 5000);
+  const items = await this.driver.findElements(this.cartItems);
+  if (items.length === 0) return; // Sudah kosong
+
+  // Ambil tombol Remove dari item pertama di cart
+  const btn = await items[0].findElement(By.css('button.cart_button'));
+  await btn.click();
+
+  // Tunggu hingga item di cart jadi kosong
+  await this.driver.wait(async () => {
+    const after = await this.driver.findElements(this.cartItems);
+    return after.length === 0;
+  }, 10000);
+  await new Promise(resolve => setTimeout(resolve, 500));
+}
+
 }
