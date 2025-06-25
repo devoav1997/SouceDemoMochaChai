@@ -1,3 +1,4 @@
+
 # 🧪 SauceDemo Mocha Test
 
 ## 🚀 Mocha + Chai + Selenium WebDriver Automation for SauceDemo
@@ -6,40 +7,42 @@ Proyek ini merupakan implementasi **automation testing** menggunakan **Mocha** s
 
 Fokus pengujian:
 
-- ✅ Login dengan kredensial valid
-- ❌ Login dengan username/password tidak valid
-- ❌ Login tanpa mengisi username atau password
-- ✅ **Product Filtering** (A-Z, Z-A, Low to High, High to Low)
-- ✅ **Add to Cart** (tambah produk ke keranjang, cek badge/cart, hapus produk dari cart)
+* ✅ Login dengan kredensial valid
+* ❌ Login dengan username/password tidak valid
+* ❌ Login tanpa mengisi username atau password
+* ✅ **Product Filtering** (A-Z, Z-A, Low to High, High to Low)
+* ✅ **Add to Cart** (tambah produk ke keranjang, cek badge/cart, hapus produk dari cart)
+* ✅ **Checkout** (checkout produk, validasi form, skenario cart kosong, dan validasi error)
 
 ---
 
 ## 🗂️ Struktur Folder
 
 ```
-
 saucedemo-test/
 ├── pages/
 │   ├── login.page.js           # Page Object untuk halaman login
 │   ├── filter.page.js          # Page Object untuk halaman inventory/filter
-│   └── cart.page.js            # Page Object untuk fitur cart/keranjang
+│   ├── cart.page.js            # Page Object untuk fitur cart/keranjang
+│   └── checkout.page.js        # Page Object untuk proses checkout
 ├── support/
 │   └── webdriver.js            # Konfigurasi Selenium WebDriver
 ├── steps/
 │   ├── login.steps.js          # Step/test untuk valid login
 │   ├── login-negative.steps.js # Step/test untuk skenario gagal login
 │   ├── filter.steps.js         # Step/test untuk fitur filter produk
-│   └── cart.steps.js           # Step/test untuk fitur add to cart
+│   ├── cart.steps.js           # Step/test untuk fitur add to cart
+│   └── checkout.steps.js       # Step/test untuk checkout produk
 ├── test/
 │   ├── login.test.js           # Loader untuk login positive
 │   ├── login-negative.test.js  # Loader untuk login negative
 │   ├── filter.test.js          # Loader untuk fitur filter produk
-│   └── cart.test.js            # Loader untuk fitur cart
+│   ├── cart.test.js            # Loader untuk fitur cart
+│   └── checkout.test.js        # Loader untuk fitur checkout
 ├── screenshot.png              # Screenshot hasil test (opsional)
 ├── package.json                # Info proyek & dependency
 └── README.md                   # Dokumentasi proyek
-
-````
+```
 
 ---
 
@@ -50,7 +53,7 @@ saucedemo-test/
 ```bash
 git clone <url-repo-kamu>
 cd saucedemo-test
-````
+```
 
 ### 2. Install dependencies
 
@@ -71,6 +74,7 @@ npx mocha test/login.test.js
 npx mocha test/login-negative.test.js
 npx mocha test/filter.test.js
 npx mocha test/cart.test.js
+npx mocha test/checkout.test.js
 ```
 
 ---
@@ -103,11 +107,20 @@ npx mocha test/cart.test.js
 * ✅ Tidak menambah produk → badge tetap 0/tidak muncul, cart kosong
 * ✅ Hapus produk dari cart → cart kembali kosong & badge menghilang/0
 
+### Checkout
+
+* ✅ Berhasil checkout satu produk (happy flow)
+* ✅ Checkout dengan keranjang kosong tetap tampilkan form checkout (sesuai desain SauceDemo)
+* ✅ Tidak mengisi form checkout → error "information is required"
+* ✅ Form checkout: first name kosong → error "first name"
+* ✅ Form checkout: last name kosong → error "last name"
+* ✅ Form checkout: postal code kosong → error "postal code"
+
 ---
 
 ## 📸 Screenshot
 
-Setelah test selesai, otomatis menyimpan screenshot (`screenshot.png`) dan delay 5 detik sebelum browser ditutup (untuk observasi manual jika perlu).
+Setelah test selesai, otomatis menyimpan screenshot (`screenshot.png`) dan delay beberapa detik sebelum browser ditutup (untuk observasi manual jika perlu).
 
 ---
 
@@ -124,7 +137,5 @@ Setelah test selesai, otomatis menyimpan screenshot (`screenshot.png`) dan delay
 * **Mocha** – Framework testing JavaScript
 * **Chai** – Library assertion
 * **Selenium WebDriver** – Untuk kontrol browser otomatis
-* **chromedriver** – Pengendali Chrome
-
-```
+* **chromedriver** – Mengendalikan Chrome
 
